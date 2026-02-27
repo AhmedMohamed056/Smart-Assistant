@@ -21,7 +21,7 @@ A domain-specific Retrieval-Augmented Generation (RAG) engine designed to automa
 
 ### Prerequisites
 
-* **Python 3.10 or 3.11** (Strictly required to avoid dependency conflicts with ChromaDB/Pydantic).
+* **Python 3.10 or 3.13** (Strictly required to avoid dependency conflicts with ChromaDB/Pydantic).
 * A Google Gemini API Key.
 
 ### Installation
@@ -67,6 +67,3 @@ A domain-specific Retrieval-Augmented Generation (RAG) engine designed to automa
 ## 🎥 Video Demo
 
 [Watch the Demo on YouTube](https://youtu.be/s1NmMdHsQ9c)
-
-## 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
