@@ -1,30 +1,19 @@
 import streamlit as st
 import os
 from dotenv import load_dotenv
-
-# =========================
-# Modern LangChain Imports
-# =========================
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyMuPDFLoader
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 from langchain_google_genai import ChatGoogleGenerativeAI
-
 from langchain.chains import create_history_aware_retriever, create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import HumanMessage, AIMessage 
 
-# =========================
-# Load environment variables
-# =========================
 load_dotenv()
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
-# =========================
-# Streamlit Config
-# =========================
 st.set_page_config(
     page_title="Smart Assistant - RAG",
     layout="wide"
@@ -33,26 +22,17 @@ st.set_page_config(
 st.title("🤖 Smart Assistant – Customer Support RAG")
 st.write("Upload policy documents and ask contextual questions based ONLY on them.")
 
-# =========================
-# Temp directory for PDFs
-# =========================
 PDF_DIR = "temp_pdfs"
 DB_DIR = "temp_chroma_db"
 
 os.makedirs(PDF_DIR, exist_ok=True)
 
-# =========================
-# Initialize Session States
-# =========================
 if "qa_chain" not in st.session_state:
     st.session_state.qa_chain = None
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# =========================
-# Sidebar – Upload PDFs
-# =========================
 st.sidebar.header("📄 Upload Documents")
 uploaded_files = st.sidebar.file_uploader(
     "Upload PDF policy documents",
@@ -138,9 +118,6 @@ if uploaded_files and st.sidebar.button("Process Documents"):
         st.session_state.messages = [] 
         st.sidebar.success("Documents processed successfully!")
 
-# =========================
-# 💬 Chat Interface 
-# =========================
 st.markdown("---")
 
 for message in st.session_state.messages:
